@@ -1,0 +1,193 @@
+
+<html>
+  <head>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  <script src="https://js.api.here.com/v3/3.0/mapsjs-core.js"
+  type="text/javascript" charset="utf-8"></script>
+  <script src="https://js.api.here.com/v3/3.0/mapsjs-service.js"
+  type="text/javascript" charset="utf-8"></script>
+  <script src="https://js.api.here.com/v3/3.0/mapsjs-ui.js" 
+      type="text/javascript" charset="utf-8"></script>
+      <script src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js" 
+     type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" 
+      href="https://js.api.here.com/v3/3.0/mapsjs-ui.css" />
+      <link rel="stylesheet" href="maps.css"
+  </head>
+  <body>
+  <button onclick= "clickButton()" id="location">My location</button>
+  <div style="width: 100%; height: 100%" id="mapContainer"></div>
+ 
+  <script>
+
+    // Initialize the platform object:
+    var platform = new H.service.Platform({
+    'app_id': 'Ed7DoMXkJPqxLYxv621K',
+    'app_code': 'GjuEdWeyBu4HP1FoIa89pQ'
+    });
+
+    // Obtain the default map types from the platform object
+    var maptypes = platform.createDefaultLayers();
+
+    var defaultLayers = platform.createDefaultLayers();
+
+
+    // Instantiate (and display) a map object:
+    var map = new H.Map(
+    document.getElementById('mapContainer'),
+    maptypes.satellite.map,
+    {
+      zoom: 20,
+      center: { lng: 18.0684758, lat: 59.3498092 },
+      mapTypeId: 'satellite'
+
+    });
+
+    var clickButton = function(result) {
+       
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+          // Create an icon object, an object with geographic coordinates and a marker:
+        coords = pos,
+        marker = new H.map.Marker(coords, H.map.Icon);
+
+          map.setCenter(pos);
+          map.setZoom(map.getZoom() + 3, true);
+          map.addObject(marker);
+       
+
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+    }
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var geopos = 'geo!' + pos.lat + ',' + pos.lng;
+            console.log(geopos)
+            var mapEvents = new H.mapevents.MapEvents(map);
+
+        map.addEventListener('tap', function(evt) {
+      // Log 'tap' and 'mouse' events:
+      console.log(evt.type, evt.currentPointer.type); 
+    });
+
+        var behavior = new H.mapevents.Behavior(mapEvents);
+     // Create the parameters for the routing request:
+          var routingParameters = {
+            // The routing mode:
+            'mode': 'balanced;pedestrian',
+            'routeattributes': 'summary',
+            //Walking speed in m/s here!
+            'walkSpeed': '2',
+            // The start point of the route:
+            'waypoint0': geopos,
+            // waypoints
+            'waypoint1': 'geo!' + (pos.lat + 0.01) + ',' + pos.lng,
+            //59.356633,18.071655
+            'waypoint2': 'geo!' + (pos.lat + 0.01) + ',' + (pos.lng + 0.01),
+            //'geo!59.356587,18.082183',
+            'waypoint3': 'geo!' + (pos.lat + 0.005) + ',' + (pos.lng + 0.01),
+            //59.352495,18.084565',
+            // The end point of the route:
+            'waypoint4': geopos,
+            // To retrieve the shape of the route we choose the route
+            // representation mode 'display'
+            'representation': 'display'
+          };
+
+
+          // Define a callback function to process the routing response:
+          var onResult = function(result) {
+            var route,
+              routeShape,
+              startPoint,
+              endPoint,
+              linestring;
+            if(result.response.route) {
+            // Pick the first route from the response:
+            route = result.response.route[0];
+
+
+            // Lägger till inforuta med ruttens längd etc
+            var bubble = new H.ui.InfoBubble(pos , {
+            content: '<b>' + route.summary.text + " Let's go!</b>"
+           });
+
+            var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+            ui.addBubble(bubble);
+
+            //Rutan har lagts till
+
+            // Pick the route's shape:
+            routeShape = route.shape;
+
+            // Create a linestring to use as a point source for the route line
+            linestring = new H.geo.LineString();
+
+            // Push all the points in the shape into the linestring:
+            routeShape.forEach(function(point) {
+              var parts = point.split(',');
+              linestring.pushLatLngAlt(parts[0], parts[1]);
+            });
+
+            // Retrieve the mapped positions of the requested waypoints:
+            startPoint = route.waypoint[0].mappedPosition;
+            endPoint = route.waypoint[4].mappedPosition;
+
+            // Create a polyline to display the route:
+            var routeLine = new H.map.Polyline(linestring, {
+              style: { lineWidth: 10 },
+            arrows: { fillColor: 'white', frequency: 2, width: 0.8, length: 0.7 }
+            });
+
+        goal_icon = new H.map.Icon('https://emassi.fr/wp-content/uploads/2017/10/Map-Marker-PNG-File.png', {size: {w: 56, h: 56}})
+            // Create a marker for the end point:
+            var endMarker = new H.map.Marker({
+              lat: endPoint.latitude,
+              lng: endPoint.longitude
+            }, {icon: goal_icon});
+
+            // Add the route polyline and the two markers to the map:
+            map.addObjects([routeLine, endMarker]);
+
+            // Set the map's viewport to make the whole route visible:
+            map.setViewBounds(routeLine.getBounds());
+            }
+          };
+
+          // Get an instance of the routing service:
+          var router = platform.getRoutingService();
+
+          // Call calculateRoute() with the routing parameters,
+          // the callback and an error callback function (called if a
+          // communication error occurs):
+          router.calculateRoute(routingParameters, onResult,
+            function(error) {
+              alert(error.message);
+            });   
+      })
+        
+}
+else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+  </script>
+  </body>
+</html>​​
