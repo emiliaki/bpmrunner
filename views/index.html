@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BPM Runner app</title>
+    <link id="favicon" rel="icon" href="http://pngimagesfree.com/Heart/Thumb/heart-png-medical-picture.png" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="index.css">
+
+  </head>
+  <body>
+    <main>
+      <form action="/login" method="GET" class="actions">
+        <button type="submit" class="login">
+          Log in to Spotify
+        </button>
+      </form>
+      <div style="display: none" id="tabs" class="tabs">
+        <!-- TABS WITH ONSEN UI-->
+          <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
+
+          <template id="page1.html">
+            <ons-page id="page1" modifier="full_bg">
+              <ons-toolbar>
+                <div class="center">BPM runner app</div>
+              </ons-toolbar>
+              <div style="text-align: center; padding: 30px; ">
+                <p style="font-weight: lighter; font-family: 'Courier New';">Send a love letter to your self</p>
+                <!-- <img src="http://boardgaming.com/wp-content/uploads/2012/11/Love-Letter-title.jpg" style="height: 200px; width: 600px;"/> -->
+                <div id="titlecard">BPM runner app</div>
+            </div>
+            <div style="text-align: center;">
+              <ons-card id="Low">Low</ons-card>
+              <ons-card id="Medium">Medium</ons-card>
+              <ons-card id="High">High</ons-card>
+              <ons-card id="Intervals">Intervals</ons-card>
+              <ons-button ripple color="#bb8fce" background="#85c1e9" id="aboutus">About us</ons-button>
+              
+            </div>
+            </ons-page>
+          </template> 
+        
+          <template id="about.html">
+            <ons-page id="about">
+              <ons-toolbar>
+                <div class="left">
+                  <ons-back-button>Back</ons-back-button>
+                </div>
+                <div class="center"></div>
+              </ons-toolbar>
+              <div class="center1">
+                <h1>BPM runner app</h1>
+                <p><b>Brought to you by Adelina, Emilia, Lotta & Tintin :)</b></p>
+              </div>
+            </ons-page>
+          </template>
+          
+          <template id="low.html">
+              <ons-page id="low">
+                <ons-toolbar>
+                  <div class="left"><ons-back-button>Back</ons-back-button></div>
+                  <div class="center"></div>
+                </ons-toolbar>
+                <div class="playlists" id='playlists'></div>
+                <div class="player"></div>
+                <a href="http://localhost:5000/link1/maps.html"><button id="maps">Maps</button></a>
+            </ons-page>
+          </template>
+          
+          <template id="medium.html">
+            <ons-page id="medium">
+              <ons-toolbar>
+                <div class="left"><ons-back-button>Back</ons-back-button></div>
+                <div class="center"></div>
+              </ons-toolbar>
+              <div class="playlists" id='playlists'></div>
+              <div class="player"></div>
+            </ons-page>
+          </template>
+          
+          <template id="high.html">
+            <ons-page id="high">
+              <ons-toolbar>
+                <div class="left"><ons-back-button>Back</ons-back-button></div>
+                <div class="center"></div>
+              </ons-toolbar>
+              <div class="playlists" id='playlists'></div>
+              <div class="player"></div>
+            </ons-page>
+          </template>
+          
+          <template id="intervals.html">
+              <ons-page id="intervals">
+                <ons-toolbar>
+                  <div class="left"><ons-back-button>Back</ons-back-button></div>
+                  <div class="center"></div>
+                </ons-toolbar>
+                <div class="playlists" id='playlists'></div>
+                <div class="player"></div>
+              </ons-page>
+            </template>
+          <!-- -->
+      </div>
+      <div class='workouts' id='workouts'></div>
+    </main>
+    
+    <script src="/client.js"></script>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="/slides.js"></script>
+    <script src="playback.js"></script>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+
+  </body>
+</html>

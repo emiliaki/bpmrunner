@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script src="scripts/slides.js"></script>
+  <link rel="stylesheet" href="styles/slides.css">
+</head>
+<body>
+
+  <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
+
+  <template id="page1.html">
+    <ons-page id="page1" modifier="full_bg">
+      <ons-toolbar>
+        <div class="center">Love Letter</div>
+        <div id="user-container">
+          <div hidden id="user-pic"></div>
+          <div hidden id="user-name"></div>
+          <button hidden id="sign-out" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+            Sign-out
+          </button>
+          <button hidden id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+            <i class="material-icons">account_circle</i>Sign-in with Google
+          </button>
+        </div>
+      </ons-toolbar>
+      <div style="text-align: center; padding: 30px; ">
+        <p style="font-weight: lighter; font-family: 'Courier New';">The Princess awaits love!</p>
+        <!-- <img src="http://boardgaming.com/wp-content/uploads/2012/11/Love-Letter-title.jpg" style="height: 200px; width: 600px;"/> -->
+        <div id="titlecard">Love-Letter</div>
+    </div>
+    <div style="text-align: center;">
+      <ons-button ripple color="#bb8fce" background="#85c1e9" id="new_game">New Game</ons-button>
+      <ons-card id="rules">Rules</ons-card>
+      <ons-card id="characters">Characters</ons-card>
+      <ons-card id="friends">Friends</ons-card>
+      <ons-card id="settings">Settings</ons-card>
+      <ons-button ripple color="#bb8fce" background="#85c1e9" id="aboutus">About us</ons-button>
+      
+    </div>
+    </ons-page>
+  </template>
+
+  <template id="about.html">
+    <ons-page id="about">
+      <ons-toolbar>
+        <div class="left"><ons-back-button>Back</ons-back-button></div>
+        <div class="center"></div>
+      </ons-toolbar>
+
+      <div class="center1">
+      <h1>Love-Letter App</h1>
+      <h2>Now finally on mobile!</h2>
+      <p><b>Brought to you by Adelina, Emilia, Lotta & Tintin :)</b></p>
+  
+  </div>
+    </ons-page>
+  </template>
+
+  <template id="rules.html">
+    <ons-page id="rulebook">
+      <ons-toolbar>
+        <div class="left"><ons-back-button>Back</ons-back-button></div>
+        <div class="center"></div>
+      </ons-toolbar>
+
+      <div class="center1">
+      <h1><b>Love-Letter Rulebook</b></h1>
+      <h2>How to Play (2 to 4 Players)</h2>
+        <p>
+            Love Letter is played in a series of rounds. Each round represents one day. At the end of each round, one player’s letter
+            reaches Princess Annette, and she reads it. When she reads enough letters from one suitor, she becomes enamored and
+            grants that suitor permission to court her. That player wins the Princess’ heart and the game. 
+          </p>
+      <h2>Taking A Turn</h2>
+      <p>
+        On your turn, draw the top card from the deck and add it to your hand. Then, choose one of the two cards now in
+        your hand and discard it face up in front of you. Apply any effect on the card you discarded. You must apply its effect,
+        even if it is bad for you!
+        See page 8 for the effects of each individual card. If you have any questions about special cases regarding the card,
+        you’ll find the answer there.
+        All discarded cards remain in front of the player who discarded them. Overlap the cards so that it’s clear in which
+        order they were discarded. This helps players to figure out which cards other players might be holding.
+        Once you finish applying the card’s effect, the turn passes to the player on your left.
+      </p>
+      <h2>Out of the Round</h2>
+      <p> If a player is knocked out of the round, that player discards the card in his or her hand face up (but does not apply the
+      card’s effect) and takes no more turns until the next round. </p>
+      
+  </div>
+    </ons-page>
+  </template>
+
+  <template id="characters.html">
+    <ons-page id="characters">
+      <ons-toolbar>
+        <div class="left"><ons-back-button>Back</ons-back-button></div>
+        <div class="center"></div>
+      </ons-toolbar>
+
+      <div class="center1">
+        <p>Meet the people from the game: </p>
+        <div>
+          <h2>Princess</h2>
+          <p>Hampered only by the naïveté of youth, Princess Annette is elegant, charming, and beautiful. Obviously, you want the
+          princess to carry your letter. However, she is self-conscious about matters of the heart, and if confronted, will toss your letter
+          in the fire and deny looking at any correspondence.</p>
+          <p>
+          If you discard the Princess—no matter how or why—she has tossed your letter into the fire. You are immediately
+          knocked out of the round. If the Princess was discarded by a card effect, any remaining effects of that card do not
+          apply (you do not draw a card from the Prince, for example). Effects tied to being knocked out the round still apply
+          (eg. Constable, Jester), however.
+          </p>
+        </div>
+        <div>
+          <h2>Countess</h2>
+          <p>
+            Always on the prowl for a handsome man or juicy gossip, Wilhelmina’s age and noble blood make her one of Princess Annette’s
+            friends. While she has great influence over the Princess, she makes herself scarce whenever the King or Prince are around.
+            Unlike other cards, which take effect when discarded, the text on the Countess applies while she is in your hand. In
+            fact, the only time it doesn’t apply is when you discard her. </p>
+            <p>
+            If you ever have the Countess and either the King or Prince in your hand, you must discard the Countess. You do
+            not have to reveal the other card in your hand. Of course, you can also discard the Countess even if you do not have a
+            royal family member in your hand. The Countess likes to play mind games....
+          </p>
+        </div>
+        <div>
+          <h2>King</h2>
+          <p>
+            The undisputed ruler of Tempest… for the moment. Because of his role in the arrest of Queen Marianna, he does not rate as
+            highly with Princess Annette as a father should. He hopes to work himself back into her graces.</p>
+            <p>
+            When you discard King Arnaud IV, trade the card in your hand with the card held by another player of your choice.
+            You cannot trade with a player who is out of the round.
+          </p>
+        </div>
+        <div>
+          <h2>Prince</h2>
+          <p>
+            As a social gadfly, Prince Arnaud was not as distressed over his mother’s arrest as one would suppose. Since many women
+            clamor for his attention, he hopes to help his sister find the same banal happiness by playing matchmaker. </p>
+            <p>
+            When you discard Prince Arnaud, choose one player still in the round (including yourself). That player discards his or
+            her hand (but doesn’t apply its effect, unless it is the Princess, see page 8) and draws a new one. If the deck is empty
+            and the player cannot draw a card, that player draws the card that was removed at the start of the round. If all other
+            players are protected by the Handmaid, you must choose yourself.
+          </p>
+        </div>
+        <div>
+          <h2>Handmaid</h2>
+          <p>
+            Few would trust a mere Handmaid with a letter of importance. Fewer still understand Susannah’s cleverness, or her skilled 
+            ability at playing the foolish Handmaid. That the Queen’s confidante and loyal servant escaped any attention after the
+            Queen’s arrest is a testament to her clever mind. </p>
+            <p>
+            When you discard the Handmaid, you are immune to the effects of other players’ cards until the start of your next
+            turn. If all players other than the player whose turn it is are protected by the Handmaid, the player must choose himor herself for a card’s effects, if possible.
+          </p>
+        </div>
+        <div>
+          <h2>Baron</h2>
+          <p>
+            The scion of an esteemed house that has long been a close ally of the royal family, Baron Talus has a quiet and gentle demeanor
+            that conceals a man used to being obeyed. His suggestions are often treated as if they came from the King himself. </p>
+            <p>
+            When you discard the Baron, choose another player still in the round. You and that player secretly
+            compare your hands. The player with the lower number is knocked out of the round. In case of a tie, nothing happens.
+          </p>
+        </div>
+        <div>
+          <h2>Priest</h2>
+          <p>
+            Open, honest, and uplifting, Father Tomas always seeks out the opportunity to do good. With
+            the arrest of the Queen, he is often seen about the palace, acting as confessor, counselor, and
+            friend. </p>
+            <p>
+            When you discard the Priest, you can look at another player’s hand. Do not reveal the
+            hand to any other players.
+          </p>
+        </div>
+        <div>
+          <h2>Guard</h2>
+          <p>
+            Charged with seeing to the security of the royal family, Odette follows her orders with
+            persistence and diligence… even though her mentor is said to have drowned while fleeing
+            arrest for complicity in the Queen’s treason. </p>
+            <p>
+            When you discard the Guard, choose a player and name a number (other than 1). If
+            that player has that number in their hand, that player is knocked out of the round.
+            If all other players still in the round cannot be chosen (eg. due to Handmaid or
+            Sycophant), this card is discarded without effect.
+          </p>
+        </div>
+      </div>
+    </ons-page>
+  </template>
+
+  <template id="friends.html">
+    <ons-page id="friends">
+      <ons-toolbar>
+        <div class="left"><ons-back-button>Back</ons-back-button></div>
+        <div class="center"></div>
+      </ons-toolbar>
+
+      <div class="center1">
+        <p>Connect to your friends!</p>
+
+  </div>
+    </ons-page>
+  </template>
+
+  <template id="settings.html">
+    <ons-page id="settings">
+      <ons-toolbar>
+        <div class="left"><ons-back-button>Back</ons-back-button></div>
+        <div class="center"></div>
+      </ons-toolbar>
+
+      <div class="center1">
+      <p>Some settings</p>
+
+  </div>
+    </ons-page>
+  </template>
+
+  <template id="new_game.html">
+    <ons-page id="new_game">
+      <ons-toolbar>
+        <div class="left"><ons-back-button>Back</ons-back-button></div>
+        <div class="center"></div>
+      </ons-toolbar>
+
+      <div class="center1">
+      <ons-card id="single">Single</ons-card>
+      <ons-card id="multi">Multi</ons-card>
+      </div>
+    </ons-page>
+  </template>
+</body>
+</html>

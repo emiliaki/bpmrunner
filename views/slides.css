@@ -1,0 +1,59 @@
+#page1 .page_background{
+	background-color: red;
+
+}
+
+
+img {
+	padding: 50px;
+}
+
+#aboutus, #rules, #friends, #settings, #characters{
+	background-color: #CD5C5C;
+	color: black;
+	text-align: center;
+	font-family: 'Courier New';
+}
+
+#new_game {
+	background-color: #CD5C5C;
+	color: black;
+	text-align: center;
+	font-family: 'Courier New';
+	font-weight: bold;
+	font-size: 30px;
+	display: block;
+	width: 50%;
+}
+
+#titlecard {
+	font-size: 80px;
+	padding: 50px;
+	border: solid red;
+	font-family: 'Snell Roundhand';
+	font-style: italic;
+}
+
+.center {
+	text-align: center;
+	background-color: #CD5C5C;
+	font-size: 30px;
+	font-weight: bold;
+	font-family: 'Courier New';
+
+}
+
+.center1 {
+	text-align: center;
+	font-family: 'Courier New';
+}
+
+#page1.html {
+	background-color: red;
+	color: red;
+}
+
+#single, #multi{
+	text-align: center;
+}
+
